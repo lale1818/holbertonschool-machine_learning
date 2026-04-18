@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 """
-Bu modul n-ə qədər olan i kvadratlarının cəmini hesablayır.
+Module to calculate the sum of i squared
 """
 
 
 def summation_i_squared(n):
     """
-    1-dən n-ə qədər olan i^2 cəmini dövr istifadə etmədən hesablayır.
+    Calculates the sum of i^2 from 1 to n without using loops
     Args:
-        n (int): Dayandırılma şərti.
+        n: the stopping condition
     Returns:
-        int: Cəmin nəticəsi, əgər n düzgün rəqəm deyilsə None.
+        The integer value of the sum, or None if n is invalid
     """
-    if not isinstance(n, (int, float)) or n < 0:
+    if not isinstance(n, int) or n < 0:
         return None
-    
-    # n float olarsa integer-ə çeviririk
-    n = int(n)
 
     # Kvadratlar cəmi düsturu: n(n + 1)(2n + 1) / 6
-    sum_total = (n * (n + 1) * (2 * n + 1)) // 6
-    return sum_total
+    # n = 0 olanda avtomatik 0 qaytaracaq
+    return (n * (n + 1) * (2 * n + 1)) // 6
