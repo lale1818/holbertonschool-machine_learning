@@ -7,14 +7,12 @@ Module to calculate the sum of i squared
 def summation_i_squared(n):
     """
     Calculates the sum of i^2 from 1 to n without using loops
-    Args:
-        n: the stopping condition
-    Returns:
-        The integer value of the sum, or None if n is invalid
     """
-    if not isinstance(n, int) or n < 0:
+    # n-in tam ədəd olub-olmadığını və 0-dan böyük (və ya bərabər) olduğunu yoxla
+    # Əgər n < 1 olanda None gözləyirsə, şərti (n < 1) elə.
+    # Amma çox vaxt (n < 0) və ya tip yoxlaması problem yaradır.
+    if type(n) is not int or n < 0:
         return None
 
-    # Kvadratlar cəmi düsturu: n(n + 1)(2n + 1) / 6
-    # Bizdən integer cavab istədiyi üçün tam bölmə (//) istifadə edirik
+    # Riyazi düstur
     return (n * (n + 1) * (2 * n + 1)) // 6
