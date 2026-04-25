@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Module to transpose a numpy.ndarray
+Module to transpose a matrix
 """
-import numpy as np
 
 
 def np_transpose(matrix):
     """
-    Transposes a numpy.ndarray
+    Transposes a matrix (which is already a numpy.ndarray)
     """
     return matrix.transpose()
