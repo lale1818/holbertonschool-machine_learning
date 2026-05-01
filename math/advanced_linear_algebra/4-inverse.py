@@ -48,7 +48,7 @@ def inverse(matrix):
     det = determinant(matrix)
     if det == 0:
         return None
-    
+
     if n == 1:
         return [[1 / matrix[0][0]]]
 
