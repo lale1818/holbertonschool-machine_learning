@@ -19,15 +19,32 @@ class Binomial:
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-
-            # Mean (mu) hesablamaq
             mean = sum(data) / len(data)
-
-            # Variance (sigma^2) hesablamaq
-            diff_sum = sum([(x - mean) ** 2 for x in data])
-            variance = diff_sum / len(data)
-
-            # Parametrləri təxmin etmək
+            sum_diff_sq = sum([(x - mean) ** 2 for x in data])
+            variance = sum_diff_sq / len(data)
             p_val = 1 - (variance / mean)
             self.n = int(round(mean / p_val))
             self.p = float(mean / self.n)
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes"""
+        if not isinstance(k, int):
+            k = int(k)
+        if k < 0 or k > self.n:
+            return 0
+
+        def fact(n):
+            """Internal factorial helper"""
+            res = 1
+            for i in range(1, n + 1):
+                res *= i
+            return res
+
+        # n! / (k! * (n - k)!)
+        n_fact = fact(self.n)
+        k_fact = fact(k)
+        nk_fact = fact(self.n - k)
+        combination = n_fact / (k_fact * nk_fact)
+
+        # P(k) = combination * p^k * (1-p)^(n-k)
+        return combination * (self.p ** k) * ((1 - self.p) ** (self.n - k))
