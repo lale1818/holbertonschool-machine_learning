@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
-"""
-Module that represents a poisson distribution
-"""
+"""Contains the Poisson class to represent a Poisson distribution"""
 
 
 class Poisson:
-    """
-    Class Poisson that represents a poisson distribution
-    """
+    """Represents a Poisson distribution"""
 
     def __init__(self, data=None, lambtha=1.):
-        """
-        Initialize Poisson distribution
-        """
+        """Initializes the Poisson distribution"""
         if data is None:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
@@ -23,3 +17,25 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes"""
+        if not isinstance(k, int):
+            k = int(k)
+
+        if k < 0:
+            return 0
+
+        # e sabiti (2.7182818285)
+        e = 2.7182818285
+
+        # k! (faktorial) hesablamaq
+        factorial = 1
+        for i in range(1, k + 1):
+            factorial *= i
+
+        # P(k) = (e^-lambda * lambda^k) / k!
+        # e^-lambda = 1 / (e^lambda)
+        pmf_val = ((e ** -self.lambtha) * (self.lambtha ** k)) / factorial
+
+        return pmf_val
