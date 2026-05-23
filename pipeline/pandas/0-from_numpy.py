@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""
-Module to create a DataFrame from a Numpy array
-"""
+"""Defines a function that creates a DataFrame from a NumPy array"""
 import pandas as pd
-import string
 
 
 def from_numpy(array):
-    """ Creates a pd.DataFrame from a np.ndarray """
+    """Creates a pd.DataFrame from a np.ndarray with alphabetical column labels"""
+    # Sütun sayını alırıq
     num_cols = array.shape[1]
-    col_names = list(string.ascii_uppercase[:num_cols])
-    return pd.DataFrame(array, columns=col_names)
+    
+    # Sütun sayına uyğun əlifba hərflərini (A, B, C...) generatsiya edirik
+    columns = [chr(65 + i) for i in range(num_cols)]
+    
+    # DataFrame yaradıb qaytarırıq
+    return pd.DataFrame(array, columns=columns)
