@@ -2,7 +2,6 @@
 """
 Fills missing values in the cryptocurrency dataset
 """
-import pandas as pd
 
 
 def fill(df):
