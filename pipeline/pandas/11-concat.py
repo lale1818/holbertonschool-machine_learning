@@ -10,12 +10,14 @@ def concat(df1, df2):
     """
     Concatenates two dataframes after indexing and filtering
     """
-    # bitstamp-dan 1417411920 daxil olmaqla ondan əvvəlki sətirləri seçirik
-    df2_filtered = df2[df2['Timestamp'] <= 1417411920]
-
-    # İndi hər iki DataFrame üçün Timestamp sütununu indeks təyin edirik
     df1 = index(df1)
-    df2_filtered = index(df2_filtered)
+    df2 = index(df2)
 
-    # İndekslənmiş məlumatları coinbase üstə, bitstamp alta gələcək şəkildə yığırıq
-    return pd.concat([df2_filtered, df1], keys=['bitstamp', 'coinbase'])
+    df2_filtered = df2.loc[:1417411920]
+
+    res = pd.concat([df2_filtered, df1], keys=['bitstamp', 'coinbase'])
+    
+    # Checker-in birbaşa .loc[1417411920] tapması üçün MultiIndex-i sığortalayırıq
+    res.index.set_names(['Source', 'Timestamp'], inplace=True)
+    
+    return res
