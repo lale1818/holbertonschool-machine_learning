@@ -10,5 +10,4 @@ def array(df):
     Selects the last 10 rows of High and Close columns
     and converts them into a numpy.ndarray
     """
-    # High və Close sütunlarının son 10 sətrini seçib .to_numpy() ilə massivə çeviririk
     return df[['High', 'Close']].tail(10).to_numpy()
