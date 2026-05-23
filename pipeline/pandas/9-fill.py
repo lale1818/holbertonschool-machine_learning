@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """
-Fills missing values in the cryptocurrency dataset
+Fills missing values in the cryptocurrency dataset.
 """
+import pandas as pd
 
 
 def fill(df):
-    """ Fills missing values according to task specifications """
-    df = df.drop(columns=['Weighted_Price'])
+    """
+    Fills missing values according to task specifications.
+    Modifies the DataFrame in place and returns it.
+    """
+    df.drop(columns=['Weighted_Price'], inplace=True)
     
     df['Close'] = df['Close'].ffill()
     
