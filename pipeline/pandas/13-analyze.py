@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Computes descriptive statistics for a DataFrame
+Computes descriptive statistics for a DataFrame.
 """
 import pandas as pd
 
