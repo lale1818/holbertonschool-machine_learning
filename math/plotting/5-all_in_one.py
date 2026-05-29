@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Plots all 5 previous graphs in one figure with a 3x2 grid.
+Plots all 5 previous graphs in one figure with a 3x2 grid layout.
 """
 import matplotlib.pyplot as plt
 import numpy as np
@@ -67,13 +67,14 @@ def all_in_one():
 
     # Task 4
     plt.subplot(3, 1, 3)
-    bins = list(range(40, 101, 10))
+    bins = np.arange(0, 101, 10)
     plt.hist(student_grades, bins=bins, edgecolor='black')
     plt.xlabel('Grades', fontsize='x-small')
     plt.ylabel('Number of Students', fontsize='x-small')
     plt.title('Project A', fontsize='x-small')
-    plt.xlim(40, 100)
+    plt.xlim(0, 100)
     plt.ylim(0, 30)
+    plt.xticks(bins, fontsize='x-small')
 
     plt.suptitle('All in One')
     plt.tight_layout()
