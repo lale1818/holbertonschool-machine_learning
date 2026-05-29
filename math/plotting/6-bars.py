@@ -1,33 +1,38 @@
 #!/usr/bin/env python3
 """
-Plots a stacked bar graph representing fruit quantities per person.
+Generates a stacked bar chart for fruit distribution per person
 """
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def bars():
-    """ Plots stacked bars for apples, bananas, oranges, and peaches """
+    """
+    Plots stacked bars representing quantities of various fruits
+    """
     np.random.seed(5)
     fruit = np.random.randint(0, 20, (4, 3))
     plt.figure(figsize=(6.4, 4.8))
 
-    persons = ['Farrah', 'Fred', 'Felicia']
-    width = 0.5
+    people = ['Farrah', 'Fred', 'Felicia']
+    fruit_types = ['apples', 'bananas', 'oranges', 'peaches']
+    colors = ['red', 'yellow', '#ff8000', '#ffe5b4']
 
-    apples = fruit[0]
-    bananas = fruit[1]
-    oranges = fruit[2]
-    peaches = fruit[3]
+    w = 0.5
+    indices = np.arange(len(people))
+    current_bottom = np.zeros(len(people))
 
-    plt.bar(persons, apples, width=width, color='red', label='apples')
-    plt.bar(persons, bananas, width=width, color='yellow', bottom=apples, label='bananas')
-    plt.bar(persons, oranges, width=width, color='#ff8000', bottom=apples + bananas, label='oranges')
-    plt.bar(persons, peaches, width=width, color='#ffe5b4', bottom=apples + bananas + oranges, label='peaches')
+    for idx in range(len(fruit_types)):
+        plt.bar(indices, fruit[idx], width=w, bottom=current_bottom,
+                color=colors[idx], label=fruit_types[idx])
+        current_bottom += fruit[idx]
+
+    plt.xticks(indices, people)
+    plt.yticks(np.arange(0, 81, 10))
+    plt.ylim(0, 80)
 
     plt.ylabel('Quantity of Fruit')
     plt.title('Number of Fruit per Person')
-    plt.ylim(0, 80)
-    plt.yticks(np.arange(0, 81, 10))
-    plt.legend()
+    plt.legend(loc='upper right')
+
     plt.show()
