@@ -35,11 +35,11 @@ class MultiNormal:
         det = np.linalg.det(self.cov)
         inv = np.linalg.inv(self.cov)
 
-        # Formula parts split to prevent line too long (E501)
-        denom = np.sqrt(((2 * np.pi) ** d) * det)
+        # Float precision xətasının qarşısını alan dəqiq riyazi ardıcıllıq
         x_centered = x - self.mean
-        exponent = -0.5 * np.matmul(np.matmul(x_centered.T, inv), x_centered)
+        exponent = -0.5 * np.dot(np.dot(x_centered.T, inv), x_centered)
 
-        pdf_value = np.exp(exponent) / denom
+        # Məxrəci və eksponenti tək sətirdə hesablayırıq
+        pdf_value = np.exp(exponent) / np.sqrt(((2 * np.pi) ** d) * det)
 
-        return pdf_value[0][0]
+        return float(pdf_value[0][0])
