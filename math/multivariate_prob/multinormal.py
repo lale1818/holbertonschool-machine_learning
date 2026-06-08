@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Multivariate Normal distribution module
+"""
+
 import numpy as np
 
 
