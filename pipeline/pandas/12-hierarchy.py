@@ -1,30 +1,22 @@
 #!/usr/bin/env python3
-"""Defines a function to rearrange MultiIndex levels chronologically"""
 import pandas as pd
 index = __import__('10-index').index
 
 
 def hierarchy(df1, df2):
-    """
-    Concatenates and rearranges the MultiIndex structure chronologically.
-    """
-    df1_indexed = index(df1)
-    df2_indexed = index(df2)
+    """Rearranges MultiIndex and concatenates two DataFrames"""
 
-    # Sətir uzunluğu xətasının (E501) qarşısını almaq üçün qısa dəyişənlər
-    start = 1417411980
-    end = 1417417980
+    df1 = index(df1)
+    df2 = index(df2)
 
-    df1_filtered = df1_indexed.loc[start:end]
-    df2_filtered = df2_indexed.loc[start:end]
+    df2 = df2.loc[1417411980:1417417980]
+    df1 = df1.loc[1417411980:1417417980]
 
-    # Birləşdiririk
-    result = pd.concat([df2_filtered, df1_filtered], keys=['bitstamp', 'coinbase'])
+    df = pd.concat(
+        [df2, df1],
+        keys=['bitstamp', 'coinbase']
+    )
 
-    # İndeks səviyyələrinin yerini dəyişirik
-    result = result.swaplevel(0, 1)
+    df = df.reorder_levels(['Timestamp', None])
 
-    # Xronoloji olaraq indeksləri sıralayırıq
-    result = result.sort_index()
-
-    return result
+    return df.sort_index()
