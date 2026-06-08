@@ -8,18 +8,20 @@ def hierarchy(df1, df2):
     """
     Concatenates and rearranges the MultiIndex structure chronologically.
     """
-    # Hər iki DataFrame-i Timestamp sütununa görə indeksləyirik
     df1_indexed = index(df1)
     df2_indexed = index(df2)
 
-    # Müvafiq zaman aralığını inclusive (daxil olmaqla) filtrləyirik
-    df1_filtered = df1_indexed.loc[1417411980:1417417980]
-    df2_filtered = df2_indexed.loc[1417411980:1417417980]
+    # Sətir uzunluğu xətasının (E501) qarşısını almaq üçün qısa dəyişənlər
+    start = 1417411980
+    end = 1417417980
+
+    df1_filtered = df1_indexed.loc[start:end]
+    df2_filtered = df2_indexed.loc[start:end]
 
     # Birləşdiririk
     result = pd.concat([df2_filtered, df1_filtered], keys=['bitstamp', 'coinbase'])
 
-    # İndeks səviyyələrinin yerini dəyişirik: (keys, Timestamp) -> (Timestamp, keys)
+    # İndeks səviyyələrinin yerini dəyişirik
     result = result.swaplevel(0, 1)
 
     # Xronoloji olaraq indeksləri sıralayırıq
