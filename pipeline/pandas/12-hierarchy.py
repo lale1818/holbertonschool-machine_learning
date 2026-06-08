@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Module that concatenates and rearranges cryptocurrency DataFrames
+"""
+
 import pandas as pd
 index = __import__('10-index').index
 
