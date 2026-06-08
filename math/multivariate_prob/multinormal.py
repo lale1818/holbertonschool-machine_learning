@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Defines Multivariate Normal distribution class"""
 import numpy as np
 
 
@@ -7,39 +6,32 @@ class MultiNormal:
     """Represents a Multivariate Normal distribution"""
 
     def __init__(self, data):
-        """Initializes with data of shape (d, n)"""
-        if not isinstance(data, np.ndarray) or len(data.shape) != 2:
-            raise TypeError("data must be a 2D numpy.ndarray")
-        d, n = data.shape
-        if n < 2:
-            raise ValueError("data must contain multiple data points")
-
-        # Mean calculation with shape (d, 1)
+        """Class constructor"""
         self.mean = np.mean(data, axis=1, keepdims=True)
-
-        # Center data points
-        data_centered = data - self.mean
-
-        # Covariance calculation
-        self.cov = np.matmul(data_centered, data_centered.T) / (n - 1)
+        self.X = data
+        n = data.shape[1]
+        self.cov = np.dot((data - self.mean), (data - self.mean).T) / (n - 1)
+        self.d = data.shape[0]
 
     def pdf(self, x):
-        """Calculates PDF at a data point x"""
+        """Calculates the PDF at a data point"""
         if not isinstance(x, np.ndarray):
             raise TypeError("x must be a numpy.ndarray")
 
-        d = self.mean.shape[0]
-        if len(x.shape) != 2 or x.shape != (d, 1):
-            raise ValueError("x must have the shape ({}, 1)".format(d))
+        if x.shape != (self.d, 1):
+            raise ValueError(f"x must have the shape ({self.d}, 1)")
 
-        det = np.linalg.det(self.cov)
-        inv = np.linalg.inv(self.cov)
+        d = self.d
+        mean = self.mean
+        cov = self.cov
 
-        # Float precision xətasının qarşısını alan dəqiq riyazi ardıcıllıq
-        x_centered = x - self.mean
-        exponent = -0.5 * np.dot(np.dot(x_centered.T, inv), x_centered)
+        diff = x - mean
+        inv = np.linalg.inv(cov)
+        det = np.linalg.det(cov)
 
-        # Məxrəci və eksponenti tək sətirdə hesablayırıq
-        pdf_value = np.exp(exponent) / np.sqrt(((2 * np.pi) ** d) * det)
+        exponent = -0.5 * np.matmul(np.matmul(diff.T, inv), diff)
+        exponent = exponent.item()
 
-        return float(pdf_value[0][0])
+        denom = np.sqrt(((2 * np.pi) ** d) * det)
+
+        return np.exp(exponent) / denom
