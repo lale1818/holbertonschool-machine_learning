@@ -59,9 +59,12 @@ class Node:
             out = f"root [feature={self.feature}, threshold={self.threshold}]\n"
         else:
             out = f"node [feature={self.feature}, threshold={self.threshold}]\n"
-        out += self.left_child_add_prefix(self.left_child.__str__())
-        out += self.right_child_add_prefix(self.right_child.__str__())
-        return out
+        
+        left_str = self.left_child_add_prefix(self.left_child.__str__())
+        right_str = self.right_child_add_prefix(self.right_child.__str__())
+        
+        out += left_str + right_str
+        return out.rstrip("\n")
 
 
 class Leaf(Node):
@@ -115,4 +118,4 @@ class Decision_Tree():
 
     def __str__(self):
         """ Returns the string representation of the whole tree """
-        return self.root.__str__()
+        return self.root.__str__() + "\n"
