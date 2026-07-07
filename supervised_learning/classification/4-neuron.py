@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 """
-This module defines a single neuron performing binary classification
-with complete evaluation functionality.
+This module defines a single neuron performing
+binary classification with evaluation.
 """
 import numpy as np
 
 
 class Neuron:
     """
-    Represents a single neuron with private weights, bias, and activation output
+    Represents a single neuron with private weights,
+    bias, and activation output.
     """
 
     def __init__(self, nx):
         """
-        Initializes the neuron with the given number of input features.
+        Initializes the neuron with input features.
         """
         if not isinstance(nx, int):
             raise TypeError("nx must be a integer")
@@ -26,22 +27,22 @@ class Neuron:
 
     @property
     def W(self):
-        """ Getter for the private weights vector __W """
+        """ Getter for private weights vector __W """
         return self.__W
 
     @property
     def b(self):
-        """ Getter for the private bias __b """
+        """ Getter for private bias __b """
         return self.__b
 
     @property
     def A(self):
-        """ Getter for the private activated output __A """
+        """ Getter for private activated output __A """
         return self.__A
 
     def forward_prop(self, X):
         """
-        Calculates the forward propagation of the neuron using sigmoid function.
+        Calculates forward propagation using sigmoid.
         """
         Z = np.dot(self.__W, X) + self.__b
         self.__A = 1 / (1 + np.exp(-Z))
@@ -49,7 +50,7 @@ class Neuron:
 
     def cost(self, Y, A):
         """
-        Calculates the cost of the model using logistic regression.
+        Calculates cost using logistic regression.
         """
         m = Y.shape[1]
         loss = -(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A))
