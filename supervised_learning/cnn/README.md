@@ -8,5 +8,6 @@ This directory contains implementations of fundamental Convolutional Neural Netw
 - `pycodestyle` 2.11.1
 
 ## Files
-- `0-conv_forward.py`: Implements forward propagation over a convolutional layer with support for padding, strides, and custom activation functions.
-- `1-pool_forward.py`: Implements forward propagation over a pooling layer supporting max and average pooling.
+- `0-conv_forward.py`: Implements forward propagation over a convolutional layer.
+- `1-pool_forward.py`: Implements forward propagation over a pooling layer.
+- `2-conv_backward.py`: Implements backward propagation over a convolutional layer.
