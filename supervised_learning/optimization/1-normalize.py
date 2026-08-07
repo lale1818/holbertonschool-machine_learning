@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
-"""Normalize module"""
+"""
+This module contains a function that normalizes a matrix.
+"""
 import numpy as np
 
 
 def normalize(X, m, s):
     """
-    Normalizes (standardizes) a matrix
+    Normalizes (standardizes) a matrix.
 
-    Args:
-        X: numpy.ndarray of shape (d, nx) to normalize
-            d is the number of data points
-            nx is the number of features
-        m: numpy.ndarray of shape (nx,) containing the mean of
-            all features of X
-        s: numpy.ndarray of shape (nx,) containing the standard
-            deviation of all features of X
+    Parameters:
+    - X: numpy.ndarray of shape (d, nx) to normalize
+    - m: numpy.ndarray of shape (nx,) containing feature means
+    - s: numpy.ndarray of shape (nx,) containing feature standard deviations
 
     Returns:
-        The normalized X matrix
+    - The normalized X matrix
     """
     return (X - m) / s
