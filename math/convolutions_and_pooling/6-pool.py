@@ -16,7 +16,7 @@ def pool(images, kernel_shape, stride, mode='max'):
     - mode: 'max' or 'avg'
 
     Returns:
-    - numpy.ndarray containing the pooled images of shape (m, out_h, out_w, c)
+    - numpy.ndarray containing the pooled images
     """
     m, h, w, c = images.shape
     kh, kw = kernel_shape
@@ -29,13 +29,15 @@ def pool(images, kernel_shape, stride, mode='max'):
 
     for i in range(out_h):
         for j in range(out_w):
-            i_start = i * sh
-            j_start = j * sw
-            image_slice = images[:, i_start:i_start + kh, j_start:j_start + kw, :]
+            i_st = i * sh
+            j_st = j * sw
+            slice_h = slice(i_st, i_st + kh)
+            slice_w = slice(j_st, j_st + kw)
+            img_slice = images[:, slice_h, slice_w, :]
 
             if mode == 'max':
-                pooled[:, i, j, :] = np.max(image_slice, axis=(1, 2))
+                pooled[:, i, j, :] = np.max(img_slice, axis=(1, 2))
             elif mode == 'avg':
-                pooled[:, i, j, :] = np.mean(image_slice, axis=(1, 2))
+                pooled[:, i, j, :] = np.mean(img_slice, axis=(1, 2))
 
     return pooled
