@@ -11,3 +11,4 @@ This directory contains implementations of fundamental Convolutional Neural Netw
 - `0-conv_forward.py`: Implements forward propagation over a convolutional layer.
 - `1-pool_forward.py`: Implements forward propagation over a pooling layer.
 - `2-conv_backward.py`: Implements backward propagation over a convolutional layer.
+- `3-pool_backward.py`: Implements backward propagation over a pooling layer.
