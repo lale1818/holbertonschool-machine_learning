@@ -12,3 +12,4 @@ This directory contains Python scripts for various data augmentation techniques 
 - `1-crop.py`: Function that performs a random crop of a 3D image tensor.
 - `2-rotate.py`: Function that rotates a 3D image tensor by 90 degrees counter-clockwise.
 - `3-contrast.py`: Function that randomly adjusts the contrast of a 3D image tensor.
+- `4-brightness.py`: Function that randomly adjusts the brightness of a 3D image tensor.
