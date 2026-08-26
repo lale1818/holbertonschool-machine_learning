@@ -7,3 +7,4 @@ This project covers Reinforcement Learning concepts and Q-Learning algorithms us
 * **1. Initialize Q-table**: `1-q_init.py` - Initializes the Q-table with zeros.
 * **2. Epsilon Greedy**: `2-epsilon_greedy.py` - Uses epsilon-greedy strategy to determine the next action.
 * **3. Q-learning**: `3-q_learning.py` - Performs Q-learning training loop.
+* **4. Play**: `4-play.py` - Has the trained agent play an episode using exploitation.
