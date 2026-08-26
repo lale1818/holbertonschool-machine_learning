@@ -16,9 +16,9 @@ class GaussianProcess:
 
         Parameters:
             X_init: numpy.ndarray of shape (t, 1) containing inputs sampled
-            Y_init: numpy.ndarray of shape (t, 1) containing outputs for X_init
+            Y_init: numpy.ndarray of shape (t, 1) containing outputs
             l: length parameter for the kernel
-            sigma_f: standard deviation given to output of black-box function
+            sigma_f: standard deviation given to output
         """
         self.X = X_init
         self.Y = Y_init
@@ -38,5 +38,6 @@ class GaussianProcess:
         Returns:
             Covariance kernel matrix of shape (m, n)
         """
-        sqdist = np.sum(X1**2, 1).reshape(-1, 1) + np.sum(X2**2, 1) - 2 * np.dot(X1, X2.T)
+        sqdist = (np.sum(X1 ** 2, 1).reshape(-1, 1) +
+                  np.sum(X2 ** 2, 1) - 2 * np.dot(X1, X2.T))
         return self.sigma_f ** 2 * np.exp(-0.5 / self.l ** 2 * sqdist)
