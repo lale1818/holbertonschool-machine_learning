@@ -38,6 +38,8 @@ class GaussianProcess:
         Returns:
             Covariance kernel matrix of shape (m, n)
         """
-        sqdist = (np.sum(X1 ** 2, 1).reshape(-1, 1)
-                  + np.sum(X2 ** 2, 1) - 2 * np.dot(X1, X2.T))
-        return self.sigma_f ** 2 * np.exp(-0.5 / self.l ** 2 * sqdist)
+        sq_sum1 = np.sum(X1 ** 2, 1).reshape(-1, 1)
+        sq_sum2 = np.sum(X2 ** 2, 1)
+        dot_prod = 2 * np.dot(X1, X2.T)
+        sqdist = sq_sum1 + sq_sum2 - dot_prod
+        return self.sigma_f ** 2 * np.exp(-0.5 / (self.l ** 2) * sqdist)
