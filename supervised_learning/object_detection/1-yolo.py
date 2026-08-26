@@ -90,7 +90,8 @@ class Yolo:
             b_w = (anchor_w * np.exp(t_w)) / input_w
             b_h = (anchor_h * np.exp(t_h)) / input_h
 
-            # Convert to corner boundary box coordinates relative to original image
+            # Convert to corner boundary box coordinates relative to
+            # original image
             x1 = (b_x - (b_w / 2)) * image_w
             y1 = (b_y - (b_h / 2)) * image_h
             x2 = (b_x + (b_w / 2)) * image_w
