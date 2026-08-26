@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Builds a neural network with the Keras library"""
+"""
+Sequential model implementation using Keras
+"""
 import tensorflow.keras as K
 
 
@@ -7,16 +9,18 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     """
     Builds a neural network with the Keras library
 
-    nx is the number of input features to the network
-    layers is a list containing the number of nodes in each layer
-    activations is a list containing the activation functions
-    lambtha is the L2 regularization parameter
-    keep_prob is the probability that a node will be kept for dropout
+    Parameters:
+        nx: number of input features
+        layers: list containing the number of nodes in each layer
+        activations: list containing activation functions for each layer
+        lambtha: L2 regularization parameter
+        keep_prob: probability that a node will be kept for dropout
 
-    Returns: the keras model
+    Returns:
+        the keras model
     """
-    regularizer = K.regularizers.l2(lambtha)
     model = K.Sequential()
+    regularizer = K.regularizers.l2(lambtha)
 
     for i in range(len(layers)):
         if i == 0:
