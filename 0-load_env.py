@@ -10,8 +10,8 @@ def load_frozen_lake(desc=None, map_name=None, is_slippery=False):
     Loads the pre-made FrozenLakeEnv environment from gymnasium.
 
     Parameters:
-    - desc: list of lists containing a custom description of the map to load
-    - map_name: string containing the pre-made map to load ('4x4' or '8x8')
+    - desc: list of lists containing a custom description of the map
+    - map_name: string containing the pre-made map to load
     - is_slippery: boolean determining if the ice is slippery
 
     Returns:
@@ -20,14 +20,18 @@ def load_frozen_lake(desc=None, map_name=None, is_slippery=False):
     if desc is None and map_name is None:
         env = gym.make(
             'FrozenLake-v1',
-            desc=None,
             map_name='8x8',
+            is_slippery=is_slippery
+        )
+    elif desc is not None:
+        env = gym.make(
+            'FrozenLake-v1',
+            desc=desc,
             is_slippery=is_slippery
         )
     else:
         env = gym.make(
             'FrozenLake-v1',
-            desc=desc,
             map_name=map_name,
             is_slippery=is_slippery
         )
