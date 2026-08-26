@@ -9,3 +9,4 @@ This directory contains implementations of advanced Deep CNN architectures (ResN
 
 ## Files
 - `2-identity_block.py`: Function that builds an identity block for ResNet architectures.
+- `3-projection_block.py`: Function that builds a projection block for ResNet architectures.
