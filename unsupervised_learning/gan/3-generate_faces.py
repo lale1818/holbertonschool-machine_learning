@@ -2,17 +2,17 @@
 """
 Convolutional Generator and Discriminator module
 """
-import tensorflow as tf
 from tensorflow import keras
 
 
 def convolutional_GenDiscr():
     """
-    Builds a convolutional generator and discriminator for generating 16x16 faces
+    Builds a convolutional generator and discriminator
+    for generating 16x16 faces
 
     Returns:
-        generator (keras.Model): The generator model
-        discriminator (keras.Model): The discriminator model
+        generator (keras.Model): Generator model
+        discriminator (keras.Model): Discriminator model
     """
 
     def get_generator():
