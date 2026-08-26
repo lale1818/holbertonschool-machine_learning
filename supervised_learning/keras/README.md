@@ -1,7 +1,6 @@
-# Question Answering Bot
+# Q-Learning
 
-This directory contains tasks for building a QA bot using NLP, Transformers, and TensorFlow Hub models.
+This project covers the basics of Reinforcement Learning using Gymnasium's FrozenLake environment and Q-Learning algorithms.
 
 ## Tasks
-* **0. Question Answering**: `0-qa.py` - Extracts answers from reference text using BERT models.
-* **1. Create the loop**: `1-loop.py` - Prompts the user continuously for input with `Q:` and outputs `A:`.
+* **0. Load the Environment**: `0-load_env.py` - Function to initialize and load the FrozenLake environment from Gymnasium.
